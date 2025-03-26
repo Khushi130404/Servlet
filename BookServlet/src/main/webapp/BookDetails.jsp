@@ -4,31 +4,7 @@
 <html>
 <head>
     <title>Book Details</title>
-    <style>
-        body { 
-            font-family: Arial, sans-serif; 
-            text-align: center; 
-            margin-top: 50px;
-        }
-        .container {
-            width: 400px;
-            margin: auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            background-color: #f9f9f9;
-        }
-        .not-found {
-            color: red;
-            font-weight: bold;
-        }
-        .details {
-            text-align: left;
-            margin-bottom: 20px;
-            padding: 10px;
-            border-bottom: 1px solid #ddd;
-        }
-    </style>
+    <link rel="stylesheet" href="static/styles2.css">
 </head>
 <body>
     <div class="container">
