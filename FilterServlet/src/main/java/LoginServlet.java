@@ -25,7 +25,7 @@ public class LoginServlet extends HttpServlet {
 			
 			Class.forName("com.mysql.jdbc.Driver");
 	        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/books?characterEncoding=latin1", "root", "khushi");
-	        PreparedStatement pst = con.prepareStatement("SELECT * FROM users WHERE username = ? and password = ?");
+	        PreparedStatement pst = con.prepareStatement("SELECT role FROM users WHERE username = ? and password = ?");
 	        pst.setString(1, username);
 	        pst.setString(2, password);
 	        ResultSet rs = pst.executeQuery();
@@ -35,17 +35,15 @@ public class LoginServlet extends HttpServlet {
 	            RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
 	            dispatcher.forward(request, response);
 	        }
-	        else if(rs.getString(3).equalsIgnoreCase("user"))
+	        else if(rs.getString(1).equalsIgnoreCase("user"))
 	        {
 	        	request.setAttribute("role", "user");
 	            RequestDispatcher dispatcher = request.getRequestDispatcher("userBookRequest.jsp");
 	            dispatcher.forward(request, response);
 	        }
-	        else
+	        else if(rs.getString(3).equals("admin"))
 	        {
-	        	request.setAttribute("role", "user");
-	            RequestDispatcher dispatcher = request.getRequestDispatcher("userBookRequest.jsp");
-	            dispatcher.forward(request, response);
+	        	
 	        }
 	        rs.close();
 	        pst.close();
