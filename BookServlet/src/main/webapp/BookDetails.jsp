@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.Map" %>
-<%@ page import="java.util.HashMap" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,6 +24,9 @@
         }
         .details {
             text-align: left;
+            margin-bottom: 20px;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
         }
     </style>
 </head>
@@ -41,11 +43,13 @@
                 Map<String, Object> book = (Map<String, Object>) request.getAttribute("book_info");
         %>
             <div class="details">
-                <p><strong>Book ID:</strong> <%= book.get("bookId") %></p>
-                <p><strong>Title:</strong> <%= book.get("bookName") %></p>
-                <p><strong>Author:</strong> <%= book.get("authorNames") %></p>
-                <p><strong>Publication:</strong> <%= book.get("publication") %></p>
-                <p><strong>Price:</strong> <%= book.get("priceOfBook") %></p>
+                <% 
+                    for (Map.Entry<String, Object> entry : book.entrySet()) { 
+                        String columnName = entry.getKey(); 
+                        Object columnValue = entry.getValue();
+                %>
+                    <p><strong><%= columnName %>:</strong> <%= columnValue %></p>
+                <% } %>
             </div>
         <%
             }
