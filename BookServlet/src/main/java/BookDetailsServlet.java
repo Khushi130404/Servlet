@@ -52,7 +52,7 @@ public class BookDetailsServlet extends HttpServlet
             rs.close();
             pst.close();
             con.close();
-            RequestDispatcher dispatcher = request.getRequestDispatcher("bookDetails.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("BookDetails.jsp");
             dispatcher.forward(request, response);
 		}
 		catch(Exception e)
