@@ -4,11 +4,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.LinkedHashMap;
 import java.util.Map;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -32,7 +29,7 @@ public class BookDetails extends HttpServlet
 			request.setAttribute("bookid", bookId);
 			Class.forName("com.mysql.jdbc.Driver");
 	        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/books?characterEncoding=latin1", "root", "khushi");
-	        PreparedStatement pst = con.prepareStatement("SELECT * FROM book WHERE bookId = ?");
+	        PreparedStatement pst = con.prepareStatement("SELECT bookId, bookName, authorNames, publication, dateOfPublication, priceOfBook, totalQuantityToOrder, totalCost FROM book WHERE bookId = ?");
 	        pst.setInt(1, bookId);
 	        ResultSet rs = pst.executeQuery();
             ResultSetMetaData metaData = rs.getMetaData();
@@ -46,7 +43,7 @@ public class BookDetails extends HttpServlet
             else
             {
             	request.setAttribute("isFound", true);
-                Map<String, Object> book = new HashMap<>();
+                Map<String, Object> book = new LinkedHashMap<>();
                 for (int i = 1; i <= columnCount; i++) 
                 {
                 	book.put(metaData.getColumnName(i), rs.getObject(i));
