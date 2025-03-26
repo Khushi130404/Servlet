@@ -18,11 +18,11 @@ import javax.servlet.http.HttpServletResponse;
 
 
 @WebServlet("/BookDetails")
-public class BookDetailsServlet extends HttpServlet 
+public class BookDetails extends HttpServlet 
 {
 	private static final long serialVersionUID = 1L;
        
-    public BookDetailsServlet() {
+    public BookDetails() {
         super();
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -30,25 +30,29 @@ public class BookDetailsServlet extends HttpServlet
 		{
 			int bookId = Integer.parseInt(request.getParameter("bookid"));
 			request.setAttribute("bookid", bookId);
-			Class.forName("com.mysql.cj.jdbc.Driver");
+			Class.forName("com.mysql.jdbc.Driver");
 	        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/books?characterEncoding=latin1", "root", "khushi");
 	        PreparedStatement pst = con.prepareStatement("SELECT * FROM book WHERE bookId = ?");
 	        pst.setInt(1, bookId);
 	        ResultSet rs = pst.executeQuery();
             ResultSetMetaData metaData = rs.getMetaData();
             int columnCount = metaData.getColumnCount();
-
-            List<Map<String, Object>> bookList = new ArrayList<>();
-            while (rs.next()) 
+            
+            if(!rs.next())
             {
+            	System.out.println("No book found for bookId: " + bookId);
+            	request.setAttribute("isFound", false);
+            }
+            else
+            {
+            	request.setAttribute("isFound", true);
                 Map<String, Object> book = new HashMap<>();
                 for (int i = 1; i <= columnCount; i++) 
                 {
-                    book.put(metaData.getColumnName(i), rs.getObject(i));
+                	book.put(metaData.getColumnName(i), rs.getObject(i));
                 }
-                bookList.add(book);
+                request.setAttribute("book_info", book);
             }
-            request.setAttribute("bookList", bookList);
             rs.close();
             pst.close();
             con.close();
