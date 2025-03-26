@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login</title>
+    <title>Login Page</title>
     <link rel="stylesheet" type="text/css" href="static/login.css">
 </head>
 <body>
@@ -17,7 +17,7 @@
             String errorMessage = (String) request.getAttribute("errorMessage");
             if (errorMessage != null) { 
         %>
-            <p class="error-message"><%= errorMessage %></p>
+            <p class="error_message"><%= errorMessage %></p>
         <% } %>
     </div>
 </body>
