@@ -17,8 +17,8 @@
             <p class="error-message"><%= errorMessage %></p>
         <% } %>
 
-        <form action="UserBookServlet" method="post">
-            <input type="number" name="bookId" placeholder="Enter Book ID" required>
+        <form action="UserBookServlet" method="get">
+            <input type="number" name="bookid" placeholder="Enter Book ID" required>
             <button type="submit">Search</button>
         </form>
     </div>
