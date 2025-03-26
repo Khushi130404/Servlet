@@ -69,7 +69,7 @@ button:hover {
 .details {
     font-size: 16px;
     font-weight: 500;
-    color: #B03052; 
+    color: #3D0301; 
     background: rgba(255, 255, 255, 0.1); 
     padding: 12px 18px;
     border-radius: 8px;
@@ -77,12 +77,95 @@ button:hover {
     margin-bottom: 25px;
 }
 
-.error-message {
-    color: #b22222; 
-    background: rgba(255, 182, 185, 0.2); 
+.error_message {
+    color: #B03052;
     padding: 12px;
-    border-radius: 8px;
+} 
+
+/* Table Container - Adjusted Width */
+.table-container {
+    width: 40%; /* Reduced width */
+    max-width: 500px; /* Prevents too much expansion */
+    margin: 20px auto;
+    padding: 15px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    overflow-x: auto;
+}
+
+/* Table - Dynamic Sizing */
+table {
+    width: 100%; /* Full width inside container */
+    border-collapse: collapse;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Table Header */
+thead {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+th {
+    padding: 10px;
+    text-align: left;
+    font-size: 16px; /* Reduced font size */
+    color: white;
     font-weight: bold;
-    border-left: 4px solid #ff4d4d; 
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Table Cells */
+td {
+    padding: 8px 12px; /* Less padding */
+    font-size: 14px; /* More compact */
+    color: white;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Alternating Row Colors */
+tbody tr:nth-child(odd) {
+    background: rgba(255, 255, 255, 0.07);
+}
+
+/* Hover Effect */
+tbody tr:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transition: background 0.3s ease-in-out;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .table-container {
+        width: 90%;
+    }
+
+    th, td {
+        font-size: 14px;
+        padding: 8px;
+    }
+}
+
+a {
+    display: inline-block; /* Makes it behave like a button */
+    color: #ffdde1; /* Soft pinkish white */
+    text-decoration: none; /* Removes underline */
+    font-weight: 500;
+    padding: 12px 18px; /* Adjusted padding for better spacing */
+    margin-top: 30px;
+    border-radius: 8px;
+    background: transparent; /* No background initially */
+    transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+/* Hover Effect */
+a:hover {
+    background: #B03052; /* Dark red */
+    color: #fff; /* Brighter white */
+    transform: scale(1.07); /* Slight zoom effect */
+    box-shadow: 0 5px 15px rgba(176, 48, 82, 0.4); /* Adds subtle glow */
+}
 
 
