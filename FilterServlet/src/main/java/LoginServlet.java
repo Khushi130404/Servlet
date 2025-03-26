@@ -35,13 +35,17 @@ public class LoginServlet extends HttpServlet {
 	            RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
 	            dispatcher.forward(request, response);
 	        }
-	        else if(rs.getString(3).equals("user"))
+	        else if(rs.getString(3).equalsIgnoreCase("user"))
 	        {
-	        	
+	        	request.setAttribute("role", "user");
+	            RequestDispatcher dispatcher = request.getRequestDispatcher("userBookRequest.jsp");
+	            dispatcher.forward(request, response);
 	        }
-	        else if(rs.getString(3).equals("admin"))
+	        else
 	        {
-	        	
+	        	request.setAttribute("role", "user");
+	            RequestDispatcher dispatcher = request.getRequestDispatcher("userBookRequest.jsp");
+	            dispatcher.forward(request, response);
 	        }
 	        rs.close();
 	        pst.close();
