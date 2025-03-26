@@ -13,6 +13,12 @@
             <input type="password" name="password" placeholder="Enter Password" required>
             <button type="submit">Login</button>
         </form>
+        <% 
+            String errorMessage = (String) request.getAttribute("errorMessage");
+            if (errorMessage != null) { 
+        %>
+            <p class="error-message"><%= errorMessage %></p>
+        <% } %>
     </div>
 </body>
 </html>
